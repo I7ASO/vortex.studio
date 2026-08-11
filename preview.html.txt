@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Preview</title>
+
+<style>
+
+body{
+margin:0;
+background:#0d0d0d;
+font-family:Segoe UI;
+overflow:hidden;
+}
+
+.topbar{
+position:fixed;
+top:0;
+right:0;
+left:0;
+height:65px;
+background:#12001d;
+display:flex;
+align-items:center;
+padding:0 15px;
+box-shadow:0 0 20px rgba(168,85,247,.4);
+z-index:999;
+}
+
+.backBtn{
+height:45px;
+padding:0 18px;
+border:none;
+border-radius:14px;
+background:linear-gradient(135deg,#a855f7,#6366f1);
+color:white;
+font-size:15px;
+font-weight:700;
+cursor:pointer;
+}
+
+iframe{
+width:100%;
+height:calc(100vh - 65px);
+margin-top:65px;
+border:none;
+background:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<button class="backBtn" onclick="history.back()">
+← رجوع
+</button>
+
+</div>
+
+<iframe id="frame"></iframe>
+
+<script>
+
+const code = localStorage.getItem("vortex_html");
+
+const frame = document.getElementById("frame");
+
+const doc = frame.contentWindow.document;
+
+doc.open();
+doc.write(code);
+doc.close();
+
+</script>
+
+</body>
+</html>

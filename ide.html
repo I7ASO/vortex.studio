@@ -12,146 +12,407 @@
 :root{
   --bg:#06030b;
   --panel:rgba(17,10,29,.78);
-  --panel2:#0d0815;
   --purple:#a855f7;
   --blue:#6366f1;
-  --cyan:#22d3ee;
   --green:#22c55e;
   --red:#fb7185;
-  --text:#fff;
-  --muted:#a99bb8;
-  --border:rgba(168,85,247,.25);
 }
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo','Segoe UI',sans-serif}
-html{background:var(--bg)}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Cairo','Segoe UI',sans-serif;
+}
+
+html,body{
+  background:#06030b;
+}
+
 body{
-  min-height:100vh;color:var(--text);overflow-x:hidden;
+  min-height:100vh;
+  color:#fff;
+  overflow-x:hidden;
   background:
     radial-gradient(circle at 15% 0%,rgba(139,40,220,.30),transparent 30%),
     radial-gradient(circle at 90% 25%,rgba(59,91,220,.20),transparent 28%),
     linear-gradient(180deg,#0a0411 0%,#050309 100%);
 }
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
-  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:38px 38px;
-  mask-image:linear-gradient(to bottom,black,transparent 90%);
+
+.container{
+  width:min(760px,94%);
+  margin:auto;
+  padding:16px 0 125px;
 }
-.container{width:min(760px,94%);margin:auto;padding:16px 0 125px}
+
 .top{
-  display:flex;align-items:center;justify-content:center;gap:14px;
-  margin:10px 0 18px;animation:drop .6s ease both
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin:10px 0 18px;
 }
+
 .logo{
-  width:72px;height:72px;border-radius:50%;object-fit:cover;
-  border:2px solid var(--purple);box-shadow:0 0 18px rgba(168,85,247,.7);
-  animation:glow 3s ease-in-out infinite
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid var(--purple);
+  box-shadow:0 0 25px rgba(168,85,247,.7);
 }
-.title h1{font-size:29px;line-height:1;font-weight:900;text-shadow:0 0 18px var(--purple)}
-.title p{margin-top:7px;color:#c084fc;font-size:13px}
+
+.title h1{
+  font-size:29px;
+  line-height:1;
+  font-weight:900;
+  text-shadow:0 0 18px var(--purple);
+}
+
+.title p{
+  margin-top:7px;
+  color:#c084fc;
+  font-size:13px;
+}
+
 .card{
-  background:var(--panel);border:1px solid var(--border);border-radius:26px;
-  padding:15px;backdrop-filter:blur(18px);
-  box-shadow:0 20px 60px rgba(0,0,0,.25),0 0 35px rgba(168,85,247,.08);
-  animation:rise .55s ease both
+  background:var(--panel);
+  border:1px solid rgba(168,85,247,.25);
+  border-radius:26px;
+  padding:15px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
-.toolbar{display:grid;grid-template-columns:1fr auto auto;gap:9px}
-select,.input{
-  width:100%;height:48px;background:#0b0711;color:#fff;
-  border:1px solid rgba(168,85,247,.35);border-radius:15px;padding:0 13px;
-  outline:none;font-size:14px
+
+.toolbar{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:9px;
 }
-select:focus,.input:focus,textarea:focus{border-color:#b56cff;box-shadow:0 0 0 3px rgba(168,85,247,.10)}
+
+select,
+.input{
+  width:100%;
+  height:48px;
+  background:#0b0711;
+  color:#fff;
+  border:1px solid rgba(168,85,247,.35);
+  border-radius:15px;
+  padding:0 13px;
+  outline:none;
+  font-size:14px;
+}
+
+select:focus,
+.input:focus,
+textarea:focus{
+  border-color:#b56cff;
+  box-shadow:0 0 0 3px rgba(168,85,247,.10);
+}
+
 .toolbtn{
-  height:48px;min-width:48px;border:1px solid rgba(255,255,255,.08);
-  background:#17101e;color:#ddd;border-radius:15px;cursor:pointer;transition:.2s
+  height:48px;
+  min-width:48px;
+  border:1px solid rgba(255,255,255,.08);
+  background:#17101e;
+  color:#ddd;
+  border-radius:15px;
+  cursor:pointer;
+  transition:.2s;
 }
-.toolbtn:hover{transform:translateY(-2px);border-color:#a855f7;color:#fff}
-.editorWrap{position:relative;margin-top:12px}
+
+.toolbtn:hover{
+  transform:translateY(-2px);
+  border-color:#a855f7;
+  color:#fff;
+}
+
+.editorWrap{
+  position:relative;
+  margin-top:12px;
+}
+
 textarea{
-  width:100%;height:330px;resize:vertical;min-height:220px;
-  background:#050407;color:#d8b4fe;border:1px solid rgba(168,85,247,.35);
-  border-radius:20px;padding:18px;outline:none;direction:ltr;text-align:left;
+  width:100%;
+  height:330px;
+  resize:vertical;
+  min-height:220px;
+  background:#050407;
+  color:#d8b4fe;
+  border:1px solid rgba(168,85,247,.35);
+  border-radius:20px;
+  padding:18px;
+  outline:none;
+  direction:ltr;
+  text-align:left;
   font:14px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  tab-size:2;caret-color:#fff
+  tab-size:2;
+  caret-color:#fff;
 }
+
 .editorMeta{
-  position:absolute;bottom:10px;left:13px;display:flex;gap:7px;
-  pointer-events:none
+  position:absolute;
+  bottom:10px;
+  left:13px;
+  display:flex;
+  gap:7px;
+  pointer-events:none;
 }
-.pill{font:11px monospace;color:#9f8aaa;background:#100b16;border:1px solid #241a2d;border-radius:9px;padding:4px 7px}
-.quick{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:9px;margin-top:12px}
+
+.pill{
+  font:11px monospace;
+  color:#9f8aaa;
+  background:#100b16;
+  border:1px solid #241a2d;
+  border-radius:9px;
+  padding:4px 7px;
+}
+
+.quick{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:9px;
+  margin-top:12px;
+}
+
 .btn{
-  height:50px;border:0;border-radius:15px;color:#fff;font-weight:800;
-  cursor:pointer;transition:.22s;display:flex;align-items:center;justify-content:center;gap:7px
+  height:50px;
+  border:0;
+  border-radius:15px;
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+  transition:.22s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
 }
-.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
-.btn:active{transform:scale(.97)}
-.run{background:linear-gradient(135deg,var(--purple),var(--blue));box-shadow:0 0 22px rgba(168,85,247,.28)}
-.clear{background:#24101a;border:1px solid rgba(251,113,133,.45);color:#fb7185}
-.copy{background:#10192c;border:1px solid rgba(77,171,247,.45)}
-.download{background:#0d2418;border:1px solid rgba(34,197,94,.45);color:#86efac}
+
+.btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+.run{
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  box-shadow:0 0 22px rgba(168,85,247,.28);
+}
+
+.clear{
+  background:#24101a;
+  border:1px solid rgba(251,113,133,.45);
+  color:#fb7185;
+}
+
+.copy{
+  background:#10192c;
+  border:1px solid rgba(77,171,247,.45);
+}
+
+.download{
+  background:#0d2418;
+  border:1px solid rgba(34,197,94,.45);
+  color:#86efac;
+}
+
 .status{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  margin-top:14px;padding:10px 12px;border-radius:14px;background:#0b0710;
-  border:1px solid rgba(255,255,255,.06);font-size:12px;color:#a99bb8
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:14px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:#0b0710;
+  border:1px solid rgba(255,255,255,.06);
+  font-size:12px;
+  color:#a99bb8;
 }
-.dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:#22c55e;box-shadow:0 0 10px #22c55e;margin-left:6px}
-.outputTitle{display:flex;align-items:center;justify-content:space-between;margin:14px 2px 8px;color:#c084fc;font-weight:800}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  display:inline-block;
+  background:#22c55e;
+  box-shadow:0 0 10px #22c55e;
+  margin-left:6px;
+}
+
+.outputTitle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:14px 2px 8px;
+  color:#c084fc;
+  font-weight:800;
+}
+
 #output{
-  min-height:125px;max-height:300px;overflow:auto;background:#030304;
-  border:1px solid rgba(168,85,247,.25);border-radius:18px;padding:14px;
-  color:#22c55e;font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  direction:ltr;text-align:left;white-space:pre-wrap
+  min-height:125px;
+  max-height:300px;
+  overflow:auto;
+  background:#030304;
+  border:1px solid rgba(168,85,247,.25);
+  border-radius:18px;
+  padding:14px;
+  color:#22c55e;
+  font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  direction:ltr;
+  text-align:left;
+  white-space:pre-wrap;
 }
-.consoleLine{padding:2px 0}.consoleErr{color:#fb7185}.consoleInfo{color:#60a5fa}
+
+.consoleLine{
+  padding:2px 0;
+}
+
+.consoleErr{
+  color:#fb7185;
+}
+
+.consoleInfo{
+  color:#60a5fa;
+}
+
 .settings{
-  display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
 }
+
 .setting{
-  background:#0b0710;border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:12px;
+  background:#0b0710;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  padding:12px;
 }
-.setting label{display:block;color:#a99bb8;font-size:12px;margin-bottom:7px}
-.check{display:flex;align-items:center;gap:8px;color:#ddd;font-size:13px}
-.check input{accent-color:#a855f7}
+
+.setting label{
+  display:block;
+  color:#a99bb8;
+  font-size:12px;
+  margin-bottom:7px;
+}
+
+.check{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#ddd;
+  font-size:13px;
+}
+
+.check input{
+  accent-color:#a855f7;
+}
+
 .bottomNav{
-  position:fixed;bottom:max(14px,env(safe-area-inset-bottom));left:50%;
-  transform:translateX(-50%);width:min(92%,390px);padding:9px;
-  background:rgba(12,7,18,.90);border:1px solid rgba(168,85,247,.28);
-  border-radius:24px;display:flex;gap:8px;backdrop-filter:blur(18px);
-  box-shadow:0 15px 45px rgba(0,0,0,.45);z-index:100
+  position:fixed;
+  bottom:max(14px,env(safe-area-inset-bottom));
+  left:50%;
+  transform:translateX(-50%);
+  width:min(92%,390px);
+  padding:9px;
+  background:rgba(12,7,18,.90);
+  border:1px solid rgba(168,85,247,.28);
+  border-radius:24px;
+  display:flex;
+  gap:8px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 15px 45px rgba(0,0,0,.45);
+  z-index:100;
 }
+
 .navBtn{
-  flex:1;height:50px;border:0;border-radius:16px;background:transparent;color:#bbb;
-  font-size:14px;font-weight:800;text-decoration:none;display:flex;
-  align-items:center;justify-content:center;gap:7px;cursor:pointer;transition:.2s
+  flex:1;
+  height:50px;
+  border:0;
+  border-radius:16px;
+  background:transparent;
+  color:#bbb;
+  font-size:14px;
+  font-weight:800;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  cursor:pointer;
+  transition:.2s;
 }
-.navBtn.active{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;box-shadow:0 0 18px rgba(168,85,247,.3)}
+
+.navBtn.active{
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  color:#fff;
+  box-shadow:0 0 18px rgba(168,85,247,.3);
+}
+
 .toast{
-  position:fixed;top:18px;left:50%;transform:translate(-50%,-20px);
-  opacity:0;pointer-events:none;background:#15101c;border:1px solid #39264a;
-  color:#fff;border-radius:14px;padding:10px 15px;font-size:13px;z-index:200;
-  transition:.25s;box-shadow:0 10px 30px rgba(0,0,0,.35)
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translate(-50%,-20px);
+  opacity:0;
+  pointer-events:none;
+  background:#15101c;
+  border:1px solid #39264a;
+  color:#fff;
+  border-radius:14px;
+  padding:10px 15px;
+  font-size:13px;
+  z-index:200;
+  transition:.25s;
 }
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@keyframes drop{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:none}}
-@keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
-@keyframes glow{0%,100%{box-shadow:0 0 15px rgba(168,85,247,.5)}50%{box-shadow:0 0 30px rgba(168,85,247,.9)}}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
 @media(max-width:600px){
-  .container{width:94%}.toolbar{grid-template-columns:1fr auto auto}
-  textarea{height:290px}.quick{grid-template-columns:1fr 1fr}
-  .settings{grid-template-columns:1fr}.title h1{font-size:26px}
+  .container{
+    width:94%;
+  }
+
+  .quick{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .settings{
+    grid-template-columns:1fr;
+  }
+
+  .title h1{
+    font-size:26px;
+  }
+
+  textarea{
+    height:290px;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <div id="toast" class="toast"></div>
 
 <div class="container">
+
   <div class="top">
-    <img class="logo" src="https://i.postimg.cc/g2J7gWgr/2306FBBB-8CC1-406C-822B-3FB96AE6E9AF.png" alt="Vortex Logo">
+    <img
+      class="logo"
+      src="https://i.postimg.cc/g2J7gWgr/2306FBBB-8CC1-406C-822B-3FB96AE6E9AF.png"
+      alt="Vortex Logo"
+    >
+
     <div class="title">
       <h1>VORTEX<br>STUDIO</h1>
       <p>Advanced Mobile IDE</p>
@@ -159,372 +420,1012 @@ textarea{
   </div>
 
   <div class="card">
+
     <div class="toolbar">
+
       <select id="lang">
         <option value="none">اختر لغة البرمجة</option>
         <option value="html">HTML</option>
         <option value="javascript">JavaScript</option>
         <option value="python">Python</option>
       </select>
-      <button class="toolbtn" onclick="insertExample()" title="مثال"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
-      <button class="toolbtn" onclick="toggleSettings()" title="الإعدادات"><i class="fa-solid fa-sliders"></i></button>
+
+      <button
+        class="toolbtn"
+        onclick="insertExample()"
+        title="مثال">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </button>
+
+      <button
+        class="toolbtn"
+        onclick="toggleSettings()"
+        title="الإعدادات">
+        <i class="fa-solid fa-sliders"></i>
+      </button>
+
     </div>
 
     <div class="editorWrap">
-      <textarea id="editor" spellcheck="false" placeholder="اكتب الكود هنا..."></textarea>
+
+      <textarea
+        id="editor"
+        spellcheck="false"
+        placeholder="اكتب الكود هنا..."
+      ></textarea>
+
       <div class="editorMeta">
         <span class="pill" id="lineCount">L: 1</span>
         <span class="pill" id="charCount">0 chars</span>
       </div>
+
     </div>
 
     <div class="quick">
-      <button class="btn run" onclick="runCode()"><i class="fa-solid fa-play"></i> تشغيل</button>
-      <button class="btn clear" onclick="clearCode()"><i class="fa-solid fa-trash"></i> حذف</button>
-      <button class="btn copy" onclick="copyCode()"><i class="fa-solid fa-copy"></i> نسخ</button>
-      <button class="btn download" onclick="downloadCode()"><i class="fa-solid fa-download"></i> تنزيل</button>
+
+      <button class="btn run" onclick="runCode()">
+        <i class="fa-solid fa-play"></i>
+        تشغيل
+      </button>
+
+      <button class="btn clear" onclick="clearCode()">
+        <i class="fa-solid fa-trash"></i>
+        حذف
+      </button>
+
+      <button class="btn copy" onclick="copyCode()">
+        <i class="fa-solid fa-copy"></i>
+        نسخ
+      </button>
+
+      <button class="btn download" onclick="downloadCode()">
+        <i class="fa-solid fa-download"></i>
+        تنزيل
+      </button>
+
     </div>
 
     <div class="status">
-      <span><span class="dot"></span><span id="statusText">جاهز</span></span>
+
+      <span>
+        <span class="dot"></span>
+        <span id="statusText">جاهز</span>
+      </span>
+
       <span id="langStatus">No language</span>
+
     </div>
 
     <div id="settings" class="settings" style="display:none">
+
       <div class="setting">
+
         <label>حفظ تلقائي</label>
-        <label class="check"><input type="checkbox" id="autosave" checked> حفظ الكود محليًا</label>
+
+        <label class="check">
+          <input type="checkbox" id="autosave" checked>
+          حفظ الكود محليًا
+        </label>
+
       </div>
+
       <div class="setting">
+
         <label>مسافة Tab</label>
+
         <select id="tabSize">
           <option value="2">2 مسافات</option>
           <option value="4">4 مسافات</option>
         </select>
+
       </div>
+
     </div>
 
     <div class="outputTitle">
-      <span><i class="fa-solid fa-terminal"></i> Console</span>
+
+      <span>
+        <i class="fa-solid fa-terminal"></i>
+        Console
+      </span>
+
       <div style="display:flex;gap:6px">
-        <button class="toolbtn" style="height:34px;min-width:38px" onclick="clearOutput()" title="مسح الكونسول"><i class="fa-solid fa-eraser"></i></button>
-        <button class="toolbtn" style="height:34px;min-width:38px" onclick="downloadOutput()" title="تنزيل الكونسول"><i class="fa-solid fa-file-arrow-down"></i></button>
+
+        <button
+          class="toolbtn"
+          style="height:34px;min-width:38px"
+          onclick="clearOutput()"
+          title="مسح الكونسول">
+          <i class="fa-solid fa-eraser"></i>
+        </button>
+
+        <button
+          class="toolbtn"
+          style="height:34px;min-width:38px"
+          onclick="downloadOutput()"
+          title="تنزيل الكونسول">
+          <i class="fa-solid fa-file-arrow-down"></i>
+        </button>
+
       </div>
+
     </div>
 
     <div id="output">
-      <div class="consoleInfo">VORTEX Console — جاهز للتشغيل...</div>
+      <div class="consoleInfo">
+        VORTEX Console — جاهز للتشغيل...
+      </div>
     </div>
 
     <div style="display:flex;gap:8px;margin-top:9px">
-      <input id="consoleInput" class="input" dir="ltr" placeholder="Console command..." autocomplete="off">
-      <button class="toolbtn" onclick="runConsoleCommand()" title="تشغيل الأمر"><i class="fa-solid fa-terminal"></i></button>
+
+      <input
+        id="consoleInput"
+        class="input"
+        dir="ltr"
+        placeholder="Console command..."
+        autocomplete="off"
+      >
+
+      <button
+        class="toolbtn"
+        onclick="runConsoleCommand()"
+        title="تشغيل الأمر">
+        <i class="fa-solid fa-terminal"></i>
+      </button>
+
     </div>
+
   </div>
 </div>
 
 <div class="bottomNav">
-  <a href="index.html" class="navBtn"><i class="fa-solid fa-house"></i> الرئيسية</a>
-  <a href="ide.html" class="navBtn active"><i class="fa-solid fa-code"></i> IDE</a>
+
+  <a href="index.html" class="navBtn">
+    <i class="fa-solid fa-house"></i>
+    الرئيسية
+  </a>
+
+  <a href="ide.html" class="navBtn active">
+    <i class="fa-solid fa-code"></i>
+    IDE
+  </a>
+
 </div>
 
 <script>
-const editor=document.getElementById("editor");
-const output=document.getElementById("output");
-const lang=document.getElementById("lang");
-const statusText=document.getElementById("statusText");
-const langStatus=document.getElementById("langStatus");
+
+const editor = document.getElementById("editor");
+const output = document.getElementById("output");
+const lang = document.getElementById("lang");
+const statusText = document.getElementById("statusText");
+const langStatus = document.getElementById("langStatus");
 
 function toast(text){
-  const t=document.getElementById("toast");
-  t.textContent=text;
+
+  const t = document.getElementById("toast");
+
+  t.textContent = text;
+
   t.classList.add("show");
+
   clearTimeout(window.__toast);
-  window.__toast=setTimeout(()=>t.classList.remove("show"),1800);
+
+  window.__toast = setTimeout(
+    () => t.classList.remove("show"),
+    1800
+  );
 }
 
 function setStatus(text,kind){
-  statusText.textContent=text;
-  const dot=document.querySelector(".dot");
-  dot.style.background=kind==="error"?"#fb7185":"#22c55e";
-  dot.style.boxShadow=kind==="error"?"0 0 10px #fb7185":"0 0 10px #22c55e";
+
+  statusText.textContent = text;
+
+  const dot = document.querySelector(".dot");
+
+  if(kind === "error"){
+
+    dot.style.background = "#fb7185";
+    dot.style.boxShadow = "0 0 10px #fb7185";
+
+  }else{
+
+    dot.style.background = "#22c55e";
+    dot.style.boxShadow = "0 0 10px #22c55e";
+
+  }
 }
 
 function writeOutput(text,type){
-  const line=document.createElement("div");
-  line.className="consoleLine "+(type==="error"?"consoleErr":type==="info"?"consoleInfo":"");
-  line.textContent=String(text);
+
+  const line = document.createElement("div");
+
+  line.className =
+    "consoleLine " +
+    (type === "error" ? "consoleErr " : "") +
+    (type === "info" ? "consoleInfo" : "");
+
+  line.textContent = String(text);
+
   output.appendChild(line);
-  output.scrollTop=output.scrollHeight;
+
+  output.scrollTop = output.scrollHeight;
 }
 
 function clearOutput(){
-  output.textContent="";
-  writeOutput("VORTEX Console cleared.","info");
+
+  output.textContent = "";
+
+  writeOutput(
+    "VORTEX Console cleared.",
+    "info"
+  );
 }
 
 lang.addEventListener("change",function(){
-  const names={html:"HTML",javascript:"JavaScript",python:"Python",none:"No language"};
-  langStatus.textContent=names[this.value];
-  const saved=localStorage.getItem("vortex_"+this.value);
+
+  const names = {
+    html:"HTML",
+    javascript:"JavaScript",
+    python:"Python",
+    none:"No language"
+  };
+
+  langStatus.textContent = names[this.value];
+
+  const saved =
+    localStorage.getItem("vortex_" + this.value);
+
   if(saved && !editor.value){
-    editor.value=saved;
+
+    editor.value = saved;
+
     updateMeta();
+
   }
 });
 
 editor.addEventListener("input",function(){
+
   updateMeta();
-  if(document.getElementById("autosave").checked && lang.value!=="none"){
-    localStorage.setItem("vortex_"+lang.value,editor.value);
+
+  if(
+    document.getElementById("autosave").checked &&
+    lang.value !== "none"
+  ){
+
+    localStorage.setItem(
+      "vortex_" + lang.value,
+      editor.value
+    );
+
   }
+
 });
 
 editor.addEventListener("keydown",function(e){
-  if(e.key==="Tab"){
+
+  if(e.key === "Tab"){
+
     e.preventDefault();
-    const spaces=" ".repeat(Number(document.getElementById("tabSize").value));
-    const start=this.selectionStart;
-    const end=this.selectionEnd;
-    this.value=this.value.slice(0,start)+spaces+this.value.slice(end);
-    this.selectionStart=this.selectionEnd=start+spaces.length;
+
+    const spaces =
+      " ".repeat(
+        Number(
+          document.getElementById("tabSize").value
+        )
+      );
+
+    const start = this.selectionStart;
+    const end = this.selectionEnd;
+
+    this.value =
+      this.value.slice(0,start) +
+      spaces +
+      this.value.slice(end);
+
+    this.selectionStart =
+      this.selectionEnd =
+      start + spaces.length;
+
     updateMeta();
   }
-  if((e.ctrlKey||e.metaKey)&&e.key==="Enter"){
+
+  if(
+    (e.ctrlKey || e.metaKey) &&
+    e.key === "Enter"
+  ){
+
     e.preventDefault();
+
     runCode();
+
   }
+
 });
 
 
-let pyodideInstance=null;
-let pyodideLoading=null;
+// =============================
+// PYTHON
+// =============================
+
+let pyodideInstance = null;
+let pyodideLoading = null;
 
 async function loadPyodideRuntime(){
-  if(pyodideInstance) return pyodideInstance;
-  if(pyodideLoading) return pyodideLoading;
 
-  setStatus("تحميل Python...");
-  writeOutput("تحميل Python runtime لأول مرة...","info");
+  if(pyodideInstance)
+    return pyodideInstance;
 
-  pyodideLoading=new Promise(function(resolve,reject){
-    if(window.loadPyodide){
-      window.loadPyodide({indexURL:"https://cdn.jsdelivr.net/pyodide/v0.26.2/full/"})
-      .then(resolve).catch(reject);
-      return;
+  if(pyodideLoading)
+    return pyodideLoading;
+
+  setStatus("تحميل Python");
+
+  writeOutput(
+    "تحميل Python runtime لأول مرة...",
+    "info"
+  );
+
+  pyodideLoading = new Promise(
+    function(resolve,reject){
+
+      if(window.loadPyodide){
+
+        window.loadPyodide({
+          indexURL:
+          "https://cdn.jsdelivr.net/pyodide/v0.26.2/full/"
+        })
+        .then(resolve)
+        .catch(reject);
+
+        return;
+      }
+
+      const script =
+        document.createElement("script");
+
+      script.src =
+        "https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js";
+
+      script.onload = function(){
+
+        window.loadPyodide({
+          indexURL:
+          "https://cdn.jsdelivr.net/pyodide/v0.26.2/full/"
+        })
+        .then(resolve)
+        .catch(reject);
+
+      };
+
+      script.onerror = function(){
+
+        reject(
+          new Error(
+            "تعذر تحميل Python runtime. تحقق من الاتصال بالإنترنت."
+          )
+        );
+
+      };
+
+      document.head.appendChild(script);
+
     }
-
-    const script=document.createElement("script");
-    script.src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js";
-    script.onload=function(){
-      window.loadPyodide({indexURL:"https://cdn.jsdelivr.net/pyodide/v0.26.2/full/"})
-      .then(resolve).catch(reject);
-    };
-    script.onerror=function(){
-      reject(new Error("تعذر تحميل Python runtime. تحقق من الاتصال بالإنترنت."));
-    };
-    document.head.appendChild(script);
-  });
+  );
 
   try{
-    pyodideInstance=await pyodideLoading;
-    writeOutput("Python runtime جاهز.","info");
+
+    pyodideInstance =
+      await pyodideLoading;
+
+    writeOutput(
+      "Python runtime جاهز.",
+      "info"
+    );
+
     return pyodideInstance;
+
   }finally{
-    pyodideLoading=null;
+
+    pyodideLoading = null;
+
   }
+
 }
 
 async function runPython(code){
-  const py=await loadPyodideRuntime();
+
+  const py =
+    await loadPyodideRuntime();
 
   py.setStdout({
+
     batched:function(msg){
+
       writeOutput(msg);
+
     }
+
   });
 
   py.setStderr({
+
     batched:function(msg){
+
       writeOutput(msg,"error");
+
     }
+
   });
 
   await py.runPythonAsync(code);
 }
 
-async function runConsoleCommand(){
-  const input=document.getElementById("consoleInput");
-  const command=input.value.trim();
-  if(!command) return;
 
-  writeOutput("> "+command,"info");
+// =============================
+// CONSOLE
+// =============================
+
+async function runConsoleCommand(){
+
+  const input =
+    document.getElementById("consoleInput");
+
+  const command =
+    input.value.trim();
+
+  if(!command)
+    return;
+
+  writeOutput(
+    "> " + command,
+    "info"
+  );
 
   try{
-    if(lang.value==="python"){
+
+    if(lang.value === "python"){
+
       await runPython(command);
-    }else if(lang.value==="javascript"){
-      const result=Function('"use strict";return ('+command+')')();
-      if(result!==undefined) writeOutput(result);
+
+    }else if(lang.value === "javascript"){
+
+      const result =
+        Function(
+          '"use strict"; return (' +
+          command +
+          ')'
+        )();
+
+      if(result !== undefined)
+        writeOutput(result);
+
     }else{
-      writeOutput("اختر JavaScript أو Python أولاً.","error");
+
+      writeOutput(
+        "اختر JavaScript أو Python أولاً.",
+        "error"
+      );
+
     }
+
   }catch(e){
-    writeOutput("ERROR: "+e.message,"error");
+
+    writeOutput(
+      "ERROR: " + e.message,
+      "error"
+    );
+
   }
 
-  input.value="";
+  input.value = "";
 }
 
-document.getElementById("consoleInput").addEventListener("keydown",function(e){
-  if(e.key==="Enter") runConsoleCommand();
-});
+document
+.getElementById("consoleInput")
+.addEventListener(
+  "keydown",
+  function(e){
+
+    if(e.key === "Enter")
+      runConsoleCommand();
+
+  }
+);
+
+
+// =============================
+// DOWNLOAD CONSOLE
+// =============================
 
 function downloadOutput(){
-  const text=Array.from(output.querySelectorAll(".consoleLine,.consoleInfo"))
-    .map(x=>x.textContent).join("\n");
+
+  const text =
+    Array.from(
+      output.querySelectorAll(".consoleLine,.consoleInfo")
+    )
+    .map(x => x.textContent)
+    .join("\n");
+
   if(!text){
+
     toast("الكونسول فارغ");
+
     return;
+
   }
-  const blob=new Blob([text],{type:"text/plain;charset=utf-8"});
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download="vortex-console.txt";
+
+  const blob =
+    new Blob(
+      [text],
+      {
+        type:"text/plain;charset=utf-8"
+      }
+    );
+
+  const a =
+    document.createElement("a");
+
+  a.href =
+    URL.createObjectURL(blob);
+
+  a.download =
+    "vortex-console.txt";
+
   a.click();
+
   URL.revokeObjectURL(a.href);
+
   toast("تم تنزيل الكونسول");
 }
 
+
+// =============================
+// META
+// =============================
+
 function updateMeta(){
-  document.getElementById("charCount").textContent=editor.value.length+" chars";
-  document.getElementById("lineCount").textContent="L: "+(editor.value.split("\n").length);
+
+  document.getElementById(
+    "charCount"
+  ).textContent =
+    editor.value.length + " chars";
+
+  document.getElementById(
+    "lineCount"
+  ).textContent =
+    "L: " +
+    editor.value.split("\n").length;
+
 }
+
+
+// =============================
+// SETTINGS
+// =============================
 
 function toggleSettings(){
-  const box=document.getElementById("settings");
-  box.style.display=box.style.display==="none"?"grid":"none";
+
+  const box =
+    document.getElementById("settings");
+
+  box.style.display =
+    box.style.display === "none"
+      ? "grid"
+      : "none";
+
 }
+
+
+// =============================
+// EXAMPLES
+// =============================
 
 function insertExample(){
-  const examples={
-    javascript:'console.log("Hello from VORTEX");\nconsole.log("JavaScript يعمل بنجاح!");',
-    html:'<!DOCTYPE html>\\n<html>\\n<body>\\n<h1>Hello VORTEX</h1>\\n</body>\\n</html>',
-    python:'print("Hello from VORTEX")\\nprint("Python جاهز!")'
+
+  const examples = {
+
+    javascript:
+`console.log("Hello from VORTEX");
+console.log("JavaScript يعمل بنجاح!");
+
+const x = 10;
+const y = 20;
+
+console.log("المجموع:", x + y);`,
+
+    html:
+`<!DOCTYPE html>
+<html>
+<body>
+<h1>Hello VORTEX</h1>
+<p>HTML يعمل بنجاح!</p>
+</body>
+</html>`,
+
+    python:
+`print("Hello from VORTEX")
+print("Python جاهز!")
+
+x = 10
+y = 20
+
+print("المجموع:", x + y)`
+
   };
+
   if(!examples[lang.value]){
+
     toast("اختر لغة أولاً");
+
     return;
+
   }
-  editor.value=examples[lang.value].replace(/\\n/g,"\n");
+
+  editor.value =
+    examples[lang.value];
+
   updateMeta();
+
   toast("تم إدخال مثال");
+
 }
 
+
+// =============================
+// RUN CODE
+// =============================
+
 async function runCode(){
-  const type=lang.value;
-  const code=editor.value.trim();
-  output.textContent="";
+
+  const type =
+    lang.value;
+
+  const code =
+    editor.value.trim();
+
+  output.textContent = "";
+
   if(!code){
-    writeOutput("لا يوجد كود للتشغيل","error");
-    setStatus("لا يوجد كود","error");
+
+    writeOutput(
+      "لا يوجد كود للتشغيل",
+      "error"
+    );
+
+    setStatus(
+      "لا يوجد كود",
+      "error"
+    );
+
     return;
   }
-  if(type==="none"){
-    writeOutput("الرجاء اختيار لغة البرمجة أولاً!","error");
-    setStatus("اختر لغة","error");
+
+  if(type === "none"){
+
+    writeOutput(
+      "الرجاء اختيار لغة البرمجة أولاً!",
+      "error"
+    );
+
+    setStatus(
+      "اختر لغة",
+      "error"
+    );
+
     return;
   }
 
   setStatus("يعمل...");
 
-  if(type==="javascript"){
-    const oldLog=console.log, oldError=console.error, oldWarn=console.warn;
-    try{
-      console.log=(...args)=>writeOutput(args.map(v=>{
-        try{return typeof v==="object"?JSON.stringify(v):v}catch(e){return String(v)}
-      }).join(" "));
-      console.error=(...args)=>writeOutput(args.join(" "),"error");
-      console.warn=(...args)=>writeOutput(args.join(" "),"info");
 
-      const result=Function('"use strict";\\n'+code)();
-      if(result!==undefined) writeOutput("↳ "+result,"info");
+  // JavaScript
+  if(type === "javascript"){
+
+    const oldLog =
+      console.log;
+
+    const oldError =
+      console.error;
+
+    const oldWarn =
+      console.warn;
+
+    try{
+
+      console.log = (...args) => {
+
+        writeOutput(
+          args.map(v => {
+
+            try{
+
+              return typeof v === "object"
+                ? JSON.stringify(v)
+                : String(v);
+
+            }catch(e){
+
+              return String(v);
+
+            }
+
+          }).join(" ")
+        );
+
+      };
+
+      console.error = (...args) => {
+
+        writeOutput(
+          args.join(" "),
+          "error"
+        );
+
+      };
+
+      console.warn = (...args) => {
+
+        writeOutput(
+          args.join(" "),
+          "info"
+        );
+
+      };
+
+
+      // التصحيح المهم هنا:
+      // استخدمنا \n وليس \\n
+
+      const result =
+        Function(
+          '"use strict";\n' +
+          code
+        )();
+
+
+      if(result !== undefined){
+
+        writeOutput(
+          "↳ " + result,
+          "info"
+        );
+
+      }
+
       setStatus("اكتمل");
+
     }catch(err){
-      writeOutput("ERROR: "+err.message,"error");
-      setStatus("خطأ","error");
+
+      writeOutput(
+        "ERROR: " + err.message,
+        "error"
+      );
+
+      setStatus(
+        "خطأ",
+        "error"
+      );
+
     }finally{
-      console.log=oldLog;
-      console.error=oldError;
-      console.warn=oldWarn;
+
+      console.log =
+        oldLog;
+
+      console.error =
+        oldError;
+
+      console.warn =
+        oldWarn;
+
     }
+
     return;
   }
 
-  if(type==="html"){
-    localStorage.setItem("vortex_html",code);
-    writeOutput("تم تجهيز HTML للمعاينة.","info");
-    try{ window.open("preview.html","_blank"); }
-    catch(e){ window.location.href="preview.html"; }
-    setStatus("تم تجهيز المعاينة");
-    return;
-  }
 
-  if(type==="python"){
+  // HTML
+  if(type === "html"){
+
+    localStorage.setItem(
+      "vortex_html",
+      code
+    );
+
+    writeOutput(
+      "تم تجهيز HTML للمعاينة.",
+      "info"
+    );
+
     try{
-      await runPython(code);
-      setStatus("اكتمل");
-    }catch(err){
-      writeOutput("PYTHON ERROR: "+err.message,"error");
-      setStatus("خطأ","error");
+
+      window.open(
+        "preview.html",
+        "_blank"
+      );
+
+    }catch(e){
+
+      window.location.href =
+        "preview.html";
+
     }
+
+    setStatus(
+      "تم تجهيز المعاينة"
+    );
+
+    return;
   }
+
+
+  // Python
+  if(type === "python"){
+
+    try{
+
+      await runPython(code);
+
+      setStatus("اكتمل");
+
+    }catch(err){
+
+      writeOutput(
+        "PYTHON ERROR: " +
+        err.message,
+        "error"
+      );
+
+      setStatus(
+        "خطأ",
+        "error"
+      );
+
+    }
+
+  }
+
 }
+
+
+// =============================
+// CLEAR
+// =============================
 
 function clearCode(){
-  editor.value="";
+
+  editor.value = "";
+
   updateMeta();
-  if(lang.value!=="none") localStorage.removeItem("vortex_"+lang.value);
-  output.textContent="";
-  writeOutput("تم حذف السكربت بنجاح","info");
+
+  if(lang.value !== "none"){
+
+    localStorage.removeItem(
+      "vortex_" + lang.value
+    );
+
+  }
+
+  output.textContent = "";
+
+  writeOutput(
+    "تم حذف السكربت بنجاح",
+    "info"
+  );
+
   setStatus("جاهز");
+
   toast("تم الحذف");
+
 }
+
+
+// =============================
+// COPY
+// =============================
 
 async function copyCode(){
+
   if(!editor.value){
-    writeOutput("لا يوجد كود للنسخ","error");
+
+    writeOutput(
+      "لا يوجد كود للنسخ",
+      "error"
+    );
+
     return;
+
   }
+
   try{
-    await navigator.clipboard.writeText(editor.value);
-    writeOutput("تم نسخ السكربت بنجاح","info");
+
+    await navigator.clipboard.writeText(
+      editor.value
+    );
+
+    writeOutput(
+      "تم نسخ السكربت بنجاح",
+      "info"
+    );
+
     toast("تم النسخ");
+
   }catch(e){
+
     editor.select();
+
     document.execCommand("copy");
+
     toast("تم النسخ");
+
   }
+
 }
+
+
+// =============================
+// DOWNLOAD
+// =============================
 
 function downloadCode(){
-  const code=editor.value;
+
+  const code =
+    editor.value;
+
   if(!code){
-    writeOutput("لا يوجد كود للتحميل","error");
+
+    writeOutput(
+      "لا يوجد كود للتحميل",
+      "error"
+    );
+
     return;
+
   }
-  const ext=lang.value==="html"?"html":lang.value==="python"?"py":"js";
-  const blob=new Blob([code],{type:"text/plain;charset=utf-8"});
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download="vortex-script."+ext;
+
+  const ext =
+    lang.value === "html"
+      ? "html"
+      : lang.value === "python"
+        ? "py"
+        : "js";
+
+  const blob =
+    new Blob(
+      [code],
+      {
+        type:"text/plain;charset=utf-8"
+      }
+    );
+
+  const a =
+    document.createElement("a");
+
+  a.href =
+    URL.createObjectURL(blob);
+
+  a.download =
+    "vortex-script." + ext;
+
   a.click();
+
   URL.revokeObjectURL(a.href);
-  writeOutput("تم تنزيل vortex-script."+ext,"info");
+
+  writeOutput(
+    "تم تنزيل vortex-script." + ext,
+    "info"
+  );
+
   toast("بدأ التنزيل");
+
 }
 
+
+// تشغيل أولي
 updateMeta();
+
 </script>
+
 </body>
 </html>

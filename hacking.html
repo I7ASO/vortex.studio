@@ -2,135 +2,461 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="VORTEX STUDIO - منصة سكربتات وهاكات روبلوكس للأجهزة">
-    <title>VORTEX STUDIO | HACKING</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="VORTEX STUDIO - المنصة الرسمية لسكربتات ومستلزمات روبلوكس لأجهزة iOS">
+    <title>VORTEX STUDIO | الصفحة الرئيسية</title>
     
-    <!-- أيقونة الموقع -->
     <link rel="shortcut icon" href="https://i.postimg.cc/g2J7gWgr/2306FBBB-8CC1-406C-822B-3FB96AE6E9AF.png" type="image/x-icon">
     
-    <!-- مكتبة الأيقونات -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- خط Cairo -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-        :root { --p: #a855f7; --bg: #0d0118; --c: rgba(255, 255, 255, 0.05); }
-        body { background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; margin: 0; text-align: center; overflow-x: hidden; }
-        
-        .header { padding: 30px; display: flex; align-items: center; justify-content: center; gap: 15px; }
-        
-        .logo-link { display: inline-block; transition: transform 0.3s ease; }
-        .logo-link:hover { transform: scale(1.05); }
-        .logo-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--p); box-shadow: 0 0 15px var(--p); object-fit: cover; }
-        
-        .nav-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-        .tab-btn { background: var(--c); border: 1px solid var(--p); color: #fff; padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
-        .tab-btn.active { background: var(--p); box-shadow: 0 0 15px var(--p); }
+        :root {
+            --primary: #c084fc;
+            --primary-glow: rgba(192, 132, 252, 0.35);
+            --secondary: #9333ea;
+            --bg-dark: #07020d;
+            --card-bg: rgba(23, 10, 38, 0.75);
+            --card-border: rgba(192, 132, 252, 0.2);
+            --text-main: #f3e8ff;
+            --text-muted: #a78bfa;
+            --success: #22c55e;
+            --discord: #5865F2;
+        }
 
-        .container { max-width: 500px; margin: 0 auto; padding: 10px; }
-        
-        .page { display: none; animation: fadeIn 0.5s forwards; }
-        .page.active { display: block; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 15px 40px;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-        .card { background: var(--c); border-radius: 30px; padding: 25px; margin-bottom: 15px; border: 1px solid rgba(168, 85, 247, 0.2); backdrop-filter: blur(10px); }
-        .hack-icon { width: 70px; height: 70px; border-radius: 20px; margin-bottom: 10px; border: 1px solid var(--p); }
+        /* خلفية نيون متحركة */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(circle at 50% 10%, rgba(147, 51, 234, 0.25), transparent 60%),
+                radial-gradient(circle at 80% 80%, rgba(192, 132, 252, 0.12), transparent 50%);
+            z-index: -1;
+        }
 
-        .btn { display: block; padding: 14px; margin-top: 10px; border-radius: 20px; text-decoration: none; font-weight: bold; color: #fff; transition: 0.3s; cursor: pointer; border: none; font-size: 1rem; width: 100%; box-sizing: border-box; }
-        .btn-dl { background: var(--p); box-shadow: 0 4px 10px rgba(168, 85, 247, 0.3); }
-        .btn-copy { background: #22c55e; box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3); }
-        .btn-discord { background: #5865F2; margin-top: 20px; box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3); }
+        .container {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+        }
 
-        .script-box { background: rgba(0, 0, 0, 0.4); padding: 15px; border-radius: 15px; border: 1px dashed var(--p); color: #a855f7; font-family: monospace; font-size: 0.85rem; word-break: break-all; margin: 15px 0; text-align: left; max-height: 100px; overflow-y: auto; }
+        /* الهيدر واللوجو */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-        .feature-box { background: rgba(168, 85, 247, 0.1); padding: 15px; border-radius: 18px; margin-top: 10px; border-right: 4px solid var(--p); text-align: right; }
-        .feature-box i { color: var(--p); margin-left: 10px; }
-        .footer { padding: 20px; color: #555; font-size: 0.8rem; margin-top: 20px; }
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 30px var(--primary-glow);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-top: 12px;
+            background: linear-gradient(135deg, #fff 30%, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* شريط الحالة المباشرة */
+        .status-bar {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(15, 5, 29, 0.8);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        /* القائمة العلوية للتنقل (Tabs) */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            background: rgba(15, 5, 29, 0.9);
+            padding: 6px;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: #fff;
+            box-shadow: 0 4px 18px var(--primary-glow);
+        }
+
+        /* الأقسام الصفحية */
+        .page {
+            display: none;
+            animation: fadeIn 0.35s ease-in-out forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* البطاقات */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 22px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .badge {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .description {
+            font-size: 0.88rem;
+            color: #c4b5fd;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* الأزرار */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7e22ce, var(--secondary));
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(126, 34, 206, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-discord {
+            background: var(--discord);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+            margin-top: 10px;
+        }
+
+        .btn-copy {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* صندوق السكربت */
+        .script-box {
+            background: #05010a;
+            border: 1px solid rgba(192, 132, 252, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            font-family: monospace;
+            font-size: 0.82rem;
+            color: #d8b4fe;
+            direction: ltr;
+            text-align: left;
+            word-break: break-all;
+            margin: 12px 0;
+            max-height: 90px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* قائمة الخطوات (التعليمات) */
+        .steps-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps-list li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 12px;
+            font-size: 0.88rem;
+            color: #c4b5fd;
+        }
+
+        .steps-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* الفوتر */
+        .footer {
+            margin-top: 35px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            opacity: 0.7;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <a href="https://discord.gg/ghJ3NcvsJs" target="_blank" class="logo-link">
-            <img src="https://i.postimg.cc/g2J7gWgr/2306FBBB-8CC1-406C-822B-3FB96AE6E9AF.png" class="logo-img" alt="VORTEX LOGO">
-        </a>
-        <h1 style="text-shadow: 0 0 10px var(--p); font-size: 1.8rem;">VORTEX STUDIO HACKING</h1>
-    </div>
-
-    <div class="nav-tabs">
-        <button class="tab-btn active" onclick="openPage('home', event)"><i class="fas fa-home"></i> الرئيسية</button>
-        <button class="tab-btn" onclick="openPage('ios', event)"><i class="fab fa-apple"></i> iOS</button>
-        <button class="tab-btn" onclick="openPage('scripts', event)"><i class="fas fa-code"></i> SCRIPTS</button>
-    </div>
-
     <div class="container">
-        
-        <div id="home" class="page active">
-            <div class="card">
-                <h2 style="color: var(--p);">مرحباً بك في VORTEX STUDIO</h2>
-                <p style="color: #ccc; font-size: 0.9rem;">أقوى منصة لتوفير سكربتات وهاكات روبلوكس للأجهزة بحماية عالية.</p>
-                <div class="feature-box"><i class="fas fa-check-circle"></i> روابط تحميل مباشرة</div>
-                <div class="feature-box"><i class="fas fa-shield-alt"></i> حماية ضد الباند</div>
-                <div class="feature-box"><i class="fas fa-sync"></i> تحديثات مستمرة</div>
+        <header class="header">
+            <img src="https://i.postimg.cc/g2J7gWgr/2306FBBB-8CC1-406C-822B-3FB96AE6E9AF.png" alt="VORTEX STUDIO Logo" class="logo">
+            <h1 class="title">VORTEX STUDIO</h1>
+            <p class="subtitle">المنصة الرسمية المعتمدة لسكربتات ومستلزمات آيفون (iOS)</p>
+        </header>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-dot"></span>
+                <span>المشغل: شغال 100%</span>
+            </div>
+            <div class="status-item">
+                <span class="status-dot"></span>
+                <span>الشهادة: نشطة (Signed)</span>
             </div>
         </div>
 
-        <div id="ios" class="page">
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="openPage('download', event)">
+                <i class="fab fa-apple"></i> التحميل المباشر
+            </button>
+            <button class="tab-btn" onclick="openPage('scripts', event)">
+                <i class="fas fa-code"></i> السكربتات
+            </button>
+            <button class="tab-btn" onclick="openPage('guide', event)">
+                <i class="fas fa-info-circle"></i> طريقة التثبيت
+            </button>
+        </nav>
+
+        <div id="download" class="page active">
             <div class="card">
-                <img src="https://i.postimg.cc/JhrQQYV2/E367-C7-D2-4750-4524-ADD5-B9-A8-DA953734.png" class="hack-icon">
-                <h3>Delta Executor</h3>
-                <a href="itms-services://?action=download-manifest&url=https://delta.bz/manifest.plist" class="btn btn-dl">تثبيت</a>
+                <div class="card-title">
+                    <span><i class="fab fa-apple" style="color: var(--primary);"></i> Delta iOS Executor</span>
+                    <span class="badge">تثبيت سيرفر خارجي</span>
+                </div>
+                <p class="description">حمل مشغل Delta المعتمد لأجهزة الآيفون والآيباد مباشرة من موقعنا بدون الحاجة لاستخدام برامج أندرويد أو كمبيوتر.</p>
+                
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="installDirect()">
+                        <i class="fas fa-download"></i> التثبيت المباشر (Direct Install)
+                    </button>
+
+                    <a href="/downloads/delta.ipa" download class="btn btn-secondary">
+                        <i class="fas fa-file-archive"></i> تحميل ملف الـ iPA المباشر
+                    </a>
+                </div>
             </div>
         </div>
 
         <div id="scripts" class="page">
             <div class="card">
-                <h3 style="color: var(--p); margin-top: 0;">VORTEX STUDIO SCRIPT HUB 🚀</h3>
-                <p style="color: #bbb; font-size: 0.85rem;">اضغط على الزر بالأسفل لنسخ السكربت تلقائياً وتشغيله داخل اللعبة.</p>
+                <div class="card-title">
+                    <span><i class="fas fa-terminal" style="color: var(--primary);"></i> سكربت VORTEX HUB</span>
+                    <span class="badge">v2.0 MUP</span>
+                </div>
+                <p class="description">انسخ السكربت الرسمي أدناه وضعه داخل المشغل مباشرة للتمتع بجميع المميزات:</p>
                 
-                <div class="script-box" id="scriptCode">loadstring(game:HttpGet("https://gist.githubusercontent.com/I7ASO/2142928d58bd391b7de8239e9efbba32/raw/91dbd0f5af1c42249daceb81bd7ae5dddaf459ee/gistfile1.txt"))()</div>
-                
+                <div class="script-box" id="scriptCode">loadstring(game:HttpGet('https://raw.githubusercontent.com/vortex-studio/main/main.lua'))()</div>
+
                 <button class="btn btn-copy" onclick="copyScript(this)">
-                    <i class="fas fa-copy"></i> نسخ السكربت
+                    <i class="fas fa-copy"></i> نسخ السكربت الآن
                 </button>
             </div>
         </div>
 
-        <a href="https://discord.gg/PxRHvCJfPd" class="btn btn-discord">
-            <i class="fab fa-discord"></i> انضم لسيرفر VORTEX STUDIO
+        <div id="guide" class="page">
+            <div class="card">
+                <div class="card-title">
+                    <span><i class="fas fa-shield-alt" style="color: var(--primary);"></i> خطوات التثبيت على الآيفون</span>
+                </div>
+                <ul class="steps-list">
+                    <li>اضغط على زر <b>التثبيت المباشر</b> واقبل إشعار التثبيت على شاشتك.</li>
+                    <li>بعد انتهاء التحميل، اذهب إلى: <b>الإعدادات > عام > إدارة الجهاز والشهادات</b>.</li>
+                    <li>اختر اسم الشهادة المعتمدة واضغط على <b>الوثوق في التطبيق (Trust)</b>.</li>
+                    <li>افتح المشغل واستمتع بتشغيل السكربتات بسهولة!</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="https://discord.gg/PxRHvCJfPd" target="_blank" rel="noopener" class="btn btn-discord">
+            <i class="fab fa-discord"></i> انضم لسيرفر VORTEX STUDIO الرسمي
         </a>
 
-        <div class="footer">
-            حقوق النشر محفوظة لـ VORTEX STUDIO © 2026
-        </div>
+        <footer class="footer">
+            جميع الحقوق محفوظة لـ VORTEX STUDIO © 2026
+        </footer>
     </div>
 
     <script>
+        // دالة التنقل بين التبويبات الرئيسية
         function openPage(pageId, evt) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
             document.getElementById(pageId).classList.add('active');
             evt.currentTarget.classList.add('active');
         }
 
+        // دالة التثبيت المباشر من سيرفر موقعك
+        function installDirect() {
+            // استبدل yourdomain.com باسم رابط موقعك المباشر
+            const siteUrl = window.location.origin;
+            const manifestUrl = siteUrl + '/manifest.plist';
+            
+            window.location.href = 'itms-services://?action=download-manifest&url=' + encodeURIComponent(manifestUrl);
+        }
+
+        // دالة نسخ السكربت المعتمدة للـ iOS و Safari
         function copyScript(button) {
             const scriptText = document.getElementById('scriptCode').innerText;
             
-            navigator.clipboard.writeText(scriptText).then(() => {
-                const originalContent = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check-circle"></i> تم النسخ بنجاح! ';
-                button.style.background = '#16a34a';
-                
-                setTimeout(() => {
-                    button.innerHTML = originalContent;
-                    button.style.background = '#22c55e';
-                }, 2000);
-            }).catch(err => {
-                alert('عذراً، لم نتمكن من النسخ التلقائي، يرجى نسخه يدوياً.');
-            });
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(scriptText).then(() => showSuccess(button));
+            } else {
+                const textArea = document.createElement("textarea");
+                textArea.value = scriptText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccess(button);
+                } catch (err) {
+                    alert('يرجى نسخ السكربت يدوياً.');
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function showSuccess(button) {
+            const originalContent = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check-circle"></i> تم النسخ بنجاح!';
+            button.style.background = 'var(--success)';
+            button.style.color = '#fff';
+            
+            setTimeout(() => {
+                button.innerHTML = originalContent;
+                button.style.background = '';
+                button.style.color = '';
+            }, 2000);
         }
     </script>
 </body>
